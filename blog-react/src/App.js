@@ -11,43 +11,45 @@ import Saved from "./components/Saved";
 import YourArticles from "./components/YourArticles";
 
 function App() {
-  const [userName, setUserName] = useState();
-  const getUser = useCallback(async (token) => {
-    const res = await fetch("http://localhost:8999", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "x-access-token": token,
-      },
-    });
-  
-    if (res.ok) {
-      const { firstName } = await res.json();
-      setUserName(firstName);
-      // localStorage.setItem("firstName", firstName);
-    }
-  }, []);
-  
-  useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("token2")); // set your token here
-    getUser(token);
-  }, [getUser]);
+    const [userName, setUserName] = useState();
+    const getUser = useCallback(async (token) => {
+        const res = await fetch("https://blogbackend3-0k42.onrender.com", {
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "x-access-token": token,
+            },
+        });
 
+        if (res.ok) {
+            const { firstName } = await res.json();
+            setUserName(firstName);
+            // localStorage.setItem("firstName", firstName);
+        }
+    }, []);
 
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/write" element={<Write />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/blogs/:id" element={<Blog />} />
-        <Route path={`/${userName}/savedArticles`} element={<Saved />} />
-        <Route path='/yourarticles' element={<YourArticles />} />
-      </Routes>
-    </>
-  );
+    useEffect(() => {
+        const token = JSON.parse(localStorage.getItem("token2")); // set your token here
+        getUser(token);
+    }, [getUser]);
+
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/blogs" element={<Blogs />} />
+                <Route path="/write" element={<Write />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/blogs/:id" element={<Blog />} />
+                <Route
+                    path={`/${userName}/savedArticles`}
+                    element={<Saved />}
+                />
+                <Route path="/yourarticles" element={<YourArticles />} />
+            </Routes>
+        </>
+    );
 }
 
 export default App;
