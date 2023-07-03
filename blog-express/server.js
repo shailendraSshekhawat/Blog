@@ -8,7 +8,7 @@ import router2 from "./routes/Home.js";
 
 const app = express();
 const Port = process.env.Port || 4000;
-const allowedOrigins = ['http://localhost:3000', 'http://example.com'];
+const allowedOrigins = ['http://localhost:3000', 'https://blogbackend3-0k42.onrender.com'];
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
