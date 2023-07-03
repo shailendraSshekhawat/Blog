@@ -8,7 +8,7 @@ import router2 from "./routes/Home.js";
 
 const app = express();
 const Port = process.env.Port || 4000;
-const allowedOrigins = ['http://localhost:3000', 'https://blogbackend3-0k42.onrender.com'];
+const allowedOrigins = ['http://localhost:3000', 'https://blogbackend3-0k42.onrender.com', 'https://stalwart-cucurucho-ed3ecd.netlify.app'];
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
